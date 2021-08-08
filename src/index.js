@@ -1,3 +1,5 @@
+import * as actions from "./actionTypes";
+
 import store from "./store";
 
 let unsubscribe = store.subscribe(() => {
@@ -5,7 +7,7 @@ let unsubscribe = store.subscribe(() => {
 });
 
 store.dispatch({
-  type: "bugAdded",
+  type: actions.BUGS_ADDED,
   payload: {
     description: "Bug1",
   },
@@ -14,7 +16,7 @@ store.dispatch({
 unsubscribe(); // ye jaise add hoga waise subscribe track krna bandh kr dega
 
 store.dispatch({
-  type: "bugsRemoved",
+  type: actions.BUGS_REMOVED,
   payload: {
     id: 1,
   },
