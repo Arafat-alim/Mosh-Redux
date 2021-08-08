@@ -1,11 +1,13 @@
+let lastIndex = 0;
+
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case "addedBugs":
+    case "bugAdded":
       return [
         ...state,
         {
           id: ++lastIndex,
-          description: "",
+          description: action.payload.description,
           resolved: false,
         },
       ];
