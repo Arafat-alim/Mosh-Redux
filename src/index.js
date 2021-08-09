@@ -1,4 +1,4 @@
-import * as actions from "./actionTypes";
+import { bugAdded } from "./actionCreator";
 
 import store from "./store";
 
@@ -6,12 +6,7 @@ let unsubscribe = store.subscribe(() => {
   console.log("Store changed", store.getState());
 });
 
-store.dispatch({
-  type: actions.BUGS_ADDED,
-  payload: {
-    description: "Bug1",
-  },
-});
+store.dispatch(bugAdded("bug 1"));
 
 unsubscribe(); // ye jaise add hoga waise subscribe track krna bandh kr dega
 
