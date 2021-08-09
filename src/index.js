@@ -23,7 +23,8 @@
 
 //PART 2
 
-import store from "./customStore";
+// import store from "./customStore"; //we dont wanna use this store now for debugging we need original store
+import store from "./store";
 import * as actions from "./actionCreator";
 
 store.subscribe(() => {
