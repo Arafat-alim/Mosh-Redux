@@ -24,6 +24,9 @@
 //PART 2
 
 import store from "./customStore";
+import * as actions from "./actionCreator";
+
+store.dispatch(actions.bugAdded("BUg 1"));
 
 store.state = 1;
-console.log(store); //read the property
+console.log(store.getState()); //read the property
