@@ -30,10 +30,10 @@ import * as actions from "./actionCreator";
 store.subscribe(() => {
   console.log("Store Changed");
 });
-store.dispatch(actions.bugAdded("BUg 1"));
-store.dispatch(actions.bugAdded("BUg 2"));
-store.dispatch(actions.bugAdded("BUg 3"));
-store.dispatch(actions.bugResolved(1));
+// store.dispatch(actions.bugAdded("BUg 1"));
+// store.dispatch(actions.bugAdded("BUg 2"));
+// store.dispatch(actions.bugAdded("BUg 3"));
+// store.dispatch(actions.bugResolved(1));
 
 store.state = 1;
 console.log(store.getState()); //read the property
