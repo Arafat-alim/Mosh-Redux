@@ -17,7 +17,7 @@
 // }
 
 //! Now creating an action using ReduxToolkit
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 const bugUpdated = createAction("bugUpdated");
 console.log(bugUpdated.type); //
 
@@ -49,25 +49,41 @@ export const bugResolved = createAction("bugResolved");
 //[] - initial state
 let lastIndex = 0;
 
-export default function reducer(state = [], action) {
-  switch (action.type) {
-    case bugAdded.type:
-      return [
-        ...state,
-        {
-          id: ++lastIndex,
-          description: action.payload.description,
-          resolved: false,
-        },
-      ];
-    case bugRemoved.type:
-      return state.filter((bugs) => bugs.id !== action.payload.id);
+//! using this statement we dont need switch case and default case also
+export default createReducer([], {
+  [bugAdded.type]: (bugs, action) => {
+    bugs.push({
+      id: ++lastIndex,
+      description: action.payload.description,
+      resolved: false,
+    });
+  },
+  [bugResolved.type]: (bugs, action) => {
+    const index = bugs.findIndex((bugs) => bugs.id === action.payload.id);
+    bugs[index].resolved = true;
+  },
+});
 
-    case bugResolved.type:
-      return state.map((bug) =>
-        bug.id !== action.payload.id ? bug : { ...bug, resolved: true }
-      );
-    default:
-      return state;
-  }
-}
+//this line of code doesnt needed now
+// export default function reducer(state = [], action) {
+//   switch (action.type) {
+//     case bugAdded.type:
+//       return [
+//         ...state,
+//         {
+//           id: ++lastIndex,
+//           description: action.payload.description,
+//           resolved: false,
+//         },
+//       ];
+//     case bugRemoved.type:
+//       return state.filter((bugs) => bugs.id !== action.payload.id);
+
+//     case bugResolved.type:
+//       return state.map((bug) =>
+//         bug.id !== action.payload.id ? bug : { ...bug, resolved: true }
+//       );
+//     default:
+//       return state;
+//   }
+// }
